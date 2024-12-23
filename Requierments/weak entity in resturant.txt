@@ -1,0 +1,32 @@
+In the context of a **Restaurant Ordering and Management** system, a **weak entity** is one that cannot be uniquely identified by its attributes alone
+ and thus relies on a **foreign key** from another, stronger entity for its identification.
+
+Given the proposed functionalities, entities like **menu items**, **table reservations**, and **orders** could be considered weak entities. Here's why:
+
+- **Menu Item**: While a menu item like a dish has its own attributes (e.g., name, price, ingredients), 
+it is often dependent on the restaurant (a strong entity) for its existence. Without the restaurant, the menu item doesn't have a meaningful context.
+
+- **Table Reservation**: A table reservation is typically identified not just by its attributes (e.g., reservation date/time, number of people) 
+but also by its association with a specific table and customer, which are strong entities.
+
+- **Order**: An order placed by a customer or waiter/waitress is usually identified by its relationship with the customer and the menu items ordered. 
+The order itself doesn't have a unique identifier outside of this relationship.
+
+These entities are considered weak because they have a **total participation constraint** in their identifying relationships with their respective
+ strong entities, meaning they cannot exist without being associated with a strong entity²[2]. 
+They would be represented with a **double rectangle** in an ER diagram, and their identifying relationships with a **double diamond**²[2].
+
+Here's a simple ER diagram representation using markdown:
+
+`````````````````````````````````````````````````````````````````````````
+Strong Entity (Restaurant)
+    || 
+    || (Identifying Relationship)
+    ||
+    \/
+Weak Entity (Menu Item, Table Reservation, Order)
+``````````````````````````````````````````````````````````````````````````
+
+The **partial key** (or discriminator) for a weak entity could be an attribute like a sequence number or a timestamp that differentiates
+it within the scope of its strong entity²[2]. For example, a table reservation might have a reservation number that is unique only within 
+the context of a particular restaurant.
